@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
 namespace User_Management_API.Controllers;
@@ -45,6 +46,11 @@ public class UserController : ControllerBase
     [HttpPost]
     public ActionResult<UserResponseDto> Create(UserCreateDto request)
     {
+        if (Users.Any(u => u.Email.Equals(request.Email, StringComparison.OrdinalIgnoreCase)))
+        {
+            return Conflict(new { message = "Użytkownik z tym adresem email już istnieje" });
+        }
+
         int userId = Users.Count == 0 ? 1 : Users.Max(u => u.Id) + 1;
         var user = new User
         {
@@ -98,12 +104,25 @@ public class UserController : ControllerBase
 public sealed class User
 {
     public int Id { get; set; }
-    public string FirstName { get; set; } = string.Empty;
-    public string LastName { get; set; } = string.Empty;
-    public string Email { get; set; } = string.Empty;
+    public required string FirstName { get; set; }
+    public required string LastName { get; set; }
+    public required string Email { get; set; }
 }
 
-public record UserCreateDto(string FirstName, string LastName, string Email);
+public record UserCreateDto
+{
+    [Required(ErrorMessage = "Imię jest wymagane.")]
+    [StringLength(50, MinimumLength = 2, ErrorMessage = "Imię musi mieć od 2 do 50 znaków")]
+    public string FirstName { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Imię jest wymagane.")]
+    [StringLength(50, MinimumLength = 2, ErrorMessage = "Imię musi mieć od 2 do 50 znaków")]
+    public string LastName { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Adres Email jest wymagany")]
+    [EmailAddress(ErrorMessage = "Niepoprawny format adresu email.")]
+    public string Email { get; set; } = string.Empty;
+}
 
 public record UserUpdateDto(string FirstName, string LastName, string Email);
 
