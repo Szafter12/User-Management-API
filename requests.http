@@ -1,6 +1,63 @@
 @BASE_URL = http://localhost:5242
+@USER_ID = 1
 
+###
 GET {{BASE_URL}}/
 Accept: application/json
 
+### 
+GET {{BASE_URL}}/api/user
+Accept: application/json
+
 ###
+GET {{BASE_URL}}/api/user/{{USER_ID}}
+Accept: application/json
+
+###
+GET {{BASE_URL}}/api/user/999
+Accept: application/json
+
+###
+POST {{BASE_URL}}/api/user
+Content-Type: application/json
+Accept: application/json
+
+{
+  "firstName": "Piotr",
+  "lastName": "Zielinski",
+  "email": "piotr.zielinski@example.com"
+}
+
+###
+PUT {{BASE_URL}}/api/user/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "firstName": "Jan-Updated",
+  "lastName": "Kowalski-Updated",
+  "email": "jan.updated@example.com"
+}
+
+###
+PUT {{BASE_URL}}/api/user/999
+Content-Type: application/json
+Accept: application/json
+
+{
+  "firstName": "Ghost",
+  "lastName": "User",
+  "email": "ghost@example.com"
+}
+
+###
+DELETE {{BASE_URL}}/api/user/2
+Accept: application/json
+
+###
+DELETE {{BASE_URL}}/api/user/999
+Accept: application/json
+
+###
+GET {{BASE_URL}}/api/user
+Accept: application/json
