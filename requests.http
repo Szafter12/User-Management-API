@@ -4,23 +4,25 @@
 ###
 GET {{BASE_URL}}/
 Accept: application/json
+Authorization: Bearer 123456789
 
 ### 
 GET {{BASE_URL}}/api/user
 Accept: application/json
-
+Authorization: Bearer 123456789
 ###
 GET {{BASE_URL}}/api/user/{{USER_ID}}
 Accept: application/json
-
+Authorization: Bearer 123456789
 ###
 GET {{BASE_URL}}/api/user/999
 Accept: application/json
-
+Authorization: Bearer 123456789
 ###
 POST {{BASE_URL}}/api/user
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer 123456789
 
 {
   "firstName": "Piotr",
@@ -32,6 +34,7 @@ Accept: application/json
 PUT {{BASE_URL}}/api/user/1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer 123456789
 
 {
   "firstName": "Jan-Updated",
@@ -43,6 +46,7 @@ Accept: application/json
 PUT {{BASE_URL}}/api/user/999
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer 123456789
 
 {
   "firstName": "Ghost",
@@ -53,11 +57,12 @@ Accept: application/json
 ###
 DELETE {{BASE_URL}}/api/user/2
 Accept: application/json
-
+Authorization: Bearer 123456789
 ###
 DELETE {{BASE_URL}}/api/user/999
 Accept: application/json
-
+Authorization: Bearer 123456789
 ###
 GET {{BASE_URL}}/api/user
 Accept: application/json
+Authorization: Bearer 123456789
