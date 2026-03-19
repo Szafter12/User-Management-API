@@ -1,5 +1,6 @@
-using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using User_Management_API.Dtos.Users;
+using User_Management_API.Models;
 
 namespace User_Management_API.Controllers;
 
@@ -100,30 +101,3 @@ public class UserController : ControllerBase
         return new UserResponseDto(user.Id, user.FirstName, user.LastName, user.Email);
     }
 }
-
-public sealed class User
-{
-    public int Id { get; set; }
-    public required string FirstName { get; set; }
-    public required string LastName { get; set; }
-    public required string Email { get; set; }
-}
-
-public record UserCreateDto
-{
-    [Required(ErrorMessage = "Imię jest wymagane.")]
-    [StringLength(50, MinimumLength = 2, ErrorMessage = "Imię musi mieć od 2 do 50 znaków")]
-    public string FirstName { get; set; } = string.Empty;
-
-    [Required(ErrorMessage = "Imię jest wymagane.")]
-    [StringLength(50, MinimumLength = 2, ErrorMessage = "Imię musi mieć od 2 do 50 znaków")]
-    public string LastName { get; set; } = string.Empty;
-
-    [Required(ErrorMessage = "Adres Email jest wymagany")]
-    [EmailAddress(ErrorMessage = "Niepoprawny format adresu email.")]
-    public string Email { get; set; } = string.Empty;
-}
-
-public record UserUpdateDto(string FirstName, string LastName, string Email);
-
-public record UserResponseDto(int Id, string FirstName, string LastName, string Email);
