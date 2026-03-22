@@ -24,10 +24,11 @@ namespace User_Management_API.Middlewares
             catch (Exception e)
             {
                 _logger.LogError($"Some error ocurs: {e.Message}");
+                await HandleExceptionAsync(context, e);
             }
         }
 
-        private static Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private static async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             context.Response.StatusCode = exception switch
             {
@@ -40,7 +41,7 @@ namespace User_Management_API.Middlewares
 
             var response = new { error = exception.Message, type = exception.GetType().Name };
 
-            return context.Response.WriteAsJsonAsync(response);
+            await context.Response.WriteAsJsonAsync(response);
         }
     }
 }

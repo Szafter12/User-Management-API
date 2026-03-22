@@ -12,14 +12,14 @@ public class UserController : ControllerBase
     {
         new User
         {
-            Id = 1,
+            UserID = 1,
             FirstName = "Jan",
             LastName = "Kowalski",
             Email = "jan.kowalski@example.com",
         },
         new User
         {
-            Id = 2,
+            UserID = 2,
             FirstName = "Anna",
             LastName = "Nowak",
             Email = "anna.nowak@example.com",
@@ -36,7 +36,7 @@ public class UserController : ControllerBase
     [HttpGet("{id:int}")]
     public ActionResult<UserResponseDto> GetById(int id)
     {
-        var user = Users.FirstOrDefault(u => u.Id == id);
+        var user = Users.FirstOrDefault(u => u.UserID == id);
         if (user is null)
         {
             return NotFound($"User with id {id} not found.");
@@ -52,10 +52,10 @@ public class UserController : ControllerBase
             return Conflict(new { message = "Użytkownik z tym adresem email już istnieje" });
         }
 
-        int userId = Users.Count == 0 ? 1 : Users.Max(u => u.Id) + 1;
+        int userId = Users.Count == 0 ? 1 : Users.Max(u => u.UserID) + 1;
         var user = new User
         {
-            Id = userId,
+            UserID = userId,
             FirstName = request.FirstName,
             LastName = request.LastName,
             Email = request.Email,
@@ -64,13 +64,13 @@ public class UserController : ControllerBase
         Users.Add(user);
 
         var response = MapToResponse(user);
-        return CreatedAtAction(nameof(GetById), new { id = user.Id }, response);
+        return CreatedAtAction(nameof(GetById), new { id = user.UserID }, response);
     }
 
     [HttpPut("{id:int}")]
     public ActionResult<UserResponseDto> Update(int id, UserUpdateDto request)
     {
-        var user = Users.FirstOrDefault(u => u.Id == id);
+        var user = Users.FirstOrDefault(u => u.UserID == id);
         if (user is null)
         {
             return NotFound($"User not found with id {id}.");
@@ -86,7 +86,7 @@ public class UserController : ControllerBase
     [HttpDelete("{id:int}")]
     public IActionResult Delete(int id)
     {
-        var user = Users.FirstOrDefault(u => u.Id == id);
+        var user = Users.FirstOrDefault(u => u.UserID == id);
         if (user is null)
         {
             return NotFound($"User with id {id} not found.");
@@ -98,6 +98,6 @@ public class UserController : ControllerBase
 
     private static UserResponseDto MapToResponse(User user)
     {
-        return new UserResponseDto(user.Id, user.FirstName, user.LastName, user.Email);
+        return new UserResponseDto(user.UserID, user.FirstName, user.LastName, user.Email);
     }
 }

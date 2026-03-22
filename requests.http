@@ -15,6 +15,10 @@ GET {{BASE_URL}}/api/user/{{USER_ID}}
 Accept: application/json
 Authorization: Bearer 123456789
 ###
+GET {{BASE_URL}}/api/employee/{{USER_ID}}
+Accept: application/json
+Authorization: Bearer 123456789
+###
 GET {{BASE_URL}}/api/user/999
 Accept: application/json
 Authorization: Bearer 123456789
