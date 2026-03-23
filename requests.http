@@ -15,7 +15,7 @@ GET {{BASE_URL}}/api/user/{{USER_ID}}
 Accept: application/json
 Authorization: Bearer 123456789
 ###
-GET {{BASE_URL}}/api/employee/{{USER_ID}}
+GET {{BASE_URL}}/api/employee/3
 Accept: application/json
 Authorization: Bearer 123456789
 ###
@@ -35,15 +35,26 @@ Authorization: Bearer 123456789
 }
 
 ###
-PUT {{BASE_URL}}/api/user/1
+POST {{BASE_URL}}/api/employee
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer 123456789
 
 {
-  "firstName": "Jan-Updated",
-  "lastName": "Kowalski-Updated",
-  "email": "jan.updated@example.com"
+  "FirstName": "Piotr",
+  "LastName": "Zielinski",
+  "DepartmentID": 1
+}
+###
+PUT {{BASE_URL}}/api/employee/1
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 123456789
+
+{
+  "FirstName": "Piotr",
+  "LastName": "Zielinski",
+  "DepartmentID": 2
 }
 
 ###
@@ -60,6 +71,10 @@ Authorization: Bearer 123456789
 
 ###
 DELETE {{BASE_URL}}/api/user/2
+Accept: application/json
+Authorization: Bearer 123456789
+###
+DELETE {{BASE_URL}}/api/employee/2
 Accept: application/json
 Authorization: Bearer 123456789
 ###
