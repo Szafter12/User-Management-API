@@ -4,7 +4,7 @@ A Robust ASP.NET Core Web API for Enterprise Standards.
 ### What the project is
 This project is a sophisticated backend service built with **ASP.NET Core** to handle core user operations. It focuses on implementing high-level corporate standards, including structured logging, custom security layers, and standardized error management.
 
-### The purpose 
+### Aim 
 Developed as the **Final Module Project** for the Microsoft Back-End Development course, this API serves as a practical application of clean architecture. The goal was to build a service where business logic is strictly separated from cross-cutting concerns like logging and security through a custom middleware pipeline.
 
 ### Key Features
@@ -20,7 +20,7 @@ Developed as the **Final Module Project** for the Microsoft Back-End Development
 *   **Standardizing API Responses:** Providing the frontend with a predictable error format regardless of where the failure occurred.
     *   **Solution:** Implemented a custom middleware that intercepts all unhandled exceptions and maps them to a standardized `ErrorResponse` record.
 
-### Setup or usage instructions
+### Setup
 
 1. **Clone & Navigate:**
 ```bash
@@ -52,5 +52,3 @@ To access protected endpoints, use the following header:
 - Structured Logging: Using ILogger to track API health and request telemetry.
 
 - Data Annotations: Declarative validation for API security and integrity.
-
-### Images
